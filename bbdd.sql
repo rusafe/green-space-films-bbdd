@@ -1,0 +1,67 @@
+CREATE DATABASE IF NOT EXISTS GreenSpaceFilms;
+
+USE GreenSpaceFilms;
+
+CREATE TABLE IF NOT EXISTS users (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	creationDateTime DATETIME DEFAULT NOW(),
+	username VARCHAR(45) NOT NULL,
+	password VARCHAR (80) NOT NULL,
+	email VARCHAR (60) NOT NULL,
+	pfp BLOB NULL DEFAULT NULL,
+	admin BOOL NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS films (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(60) NOT NULL,
+	synopsis VARCHAR(1000) NOT NULL,
+	image BLOB NOT NULL,
+	duration TIME NOT NULL,
+	minAge INT NOT NULL,
+	price DOUBLE NOT NULL,
+	genres SET('Accion','Aventura','Misterio','Ciencia ficción','Drama','Fantasía','Terror','Suspense','Comedia') NOT NULL,
+	priemering BOOL NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS rooms (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	type ENUM('Standard','Dolby','ISENSE') NOT NULL DEFAULT 'Standard'
+);
+
+CREATE TABLE IF NOT EXISTS sessions (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	filmId INT NOT NULL,
+	roomId INT NOT NULL,
+	startHour TIME NOT NULL,
+	total_seats INT NOT NULL,
+	occupied_seats INT NOT NULL DEFAULT 0,
+	FOREIGN KEY (filmId) REFERENCES films(id),
+	FOREIGN KEY (roomId) REFERENCES rooms(id)
+);
+
+CREATE TABLE IF NOT EXISTS tickets (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	userId INT NOT NULL,
+	filmId INT NOT NULL,
+	roomId INT NOT NULL,
+	dateBought DATETIME NOT NULL DEFAULT NOW(),
+	date DATE NOT NULL,
+	quantity INT NOT NULL DEFAULT 1,
+	total_price DOUBLE NOT NULL,
+	discount DOUBLE NOT NULL DEFAULT 0,
+	FOREIGN KEY (userId) REFERENCES users(id),
+	FOREIGN KEY (filmId) REFERENCES films(id),
+	FOREIGN KEY (roomId) REFERENCES rooms(id)
+);
+
+CREATE TABLE IF NOT EXISTS reviews (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	userId INT NOT NULL,
+	filmId INT NOT NULL,
+	review VARCHAR(600) NOT NULL,
+	score DOUBLE NOT NULL,
+	reviewDateTime DATETIME NOT NULL DEFAULT NOW(),
+	FOREIGN KEY (userId) REFERENCES users(id),
+	FOREIGN KEY (filmId) REFERENCES films(id)
+);
