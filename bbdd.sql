@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS films (
 	minAge INT NOT NULL,
 	price DOUBLE NOT NULL,
 	genres SET('Accion','Aventura','Misterio','Ciencia ficción','Drama','Fantasía','Terror','Suspense','Comedia') NOT NULL,
-	priemering BOOL NOT NULL DEFAULT 0
+	premiering BOOL NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS rooms (
