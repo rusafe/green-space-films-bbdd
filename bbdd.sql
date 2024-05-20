@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS reviews (
 	userId INT NOT NULL,
 	filmId INT NOT NULL,
 	review_message VARCHAR(600) NOT NULL,
-	score DOUBLE NOT NULL,
+	score INT NOT NULL,
 	reviewDateTime DATETIME NOT NULL DEFAULT NOW(),
 	FOREIGN KEY (userId) REFERENCES users(id),
 	FOREIGN KEY (filmId) REFERENCES films(id)
