@@ -48,9 +48,10 @@ CREATE TABLE IF NOT EXISTS tickets (
 	roomId INT NOT NULL,
 	dateBought DATETIME NOT NULL DEFAULT NOW(),
 	dateFilm DATE NOT NULL,
+	hourFilm TIME NOT NULL,
 	quantity INT NOT NULL DEFAULT 1,
-	total_price DOUBLE NOT NULL,
-	discount DOUBLE NOT NULL DEFAULT 0,
+	individual_price DOUBLE NOT NULL,
+	discount INT NOT NULL DEFAULT 0,
 	FOREIGN KEY (userId) REFERENCES users(id),
 	FOREIGN KEY (filmId) REFERENCES films(id),
 	FOREIGN KEY (roomId) REFERENCES rooms(id)
