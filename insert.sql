@@ -1,4 +1,6 @@
-INSERT INTO films (name,synopsis,cover,duration,minAge,price,genres,priemering,next_premiering) VALUES ('Shreck','Shreck es un ogro que vive tranquilamente en su pantano hasta que, por el destierro mandado por un minúsculo rey de todas las criaturas mágicas, éste tendrá que recuperar su casa rescatando a una princesa atrapada en una torre.','shreck.png','01:29:00','0','5.99','Aventura,Comedia','0','0');
+# Contraseña del usuario admin es 11, pero se guarda cifrada
+INSERT INTO users (username, password, mail, pfp, admin) VALUES ("admin", "17ba0791499db908433b80f37c5fbc89b870084b", "floadm@gmail.com", NULL, 1);
+
 INSERT INTO rooms (type) VALUES ("Standard");
 INSERT INTO rooms (type) VALUES ("Dolby");
 INSERT INTO rooms (type) VALUES ("Isense");
